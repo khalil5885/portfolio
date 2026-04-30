@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Portfolio — Full-Stack Developer"/>
+<title>Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- ============================================================
+  ★  EDIT YOUR PORTFOLIO HERE  ★
+  All your personal data lives in the <script id="portfolio-data"> block below.
+  Search for "EDIT:" to find every field you need to fill in.
+  ============================================================ -->
+<script id="portfolio-data" type="application/json">
+{
+  "name": "Khalil Jebabli",
+  "initials": "KJ",
+  "role": "Full-Stack Web Developer",
+  "available": true,
+  "availableText": "Open to remote opportunities",
+  "tagline": ["Building real", "systems that", "actually scale."],
+  "taglineAccent": 1,
+  "description": "Full-stack developer focused on backend systems, performance, and scalable architecture. I build production-ready applications using Laravel, React, and MySQL, with a deep interest in low-level system design.",
+  "email": "cicada959@gmail.com",
+  "stats": [
+    { "number": "1+", "label": "SaaS Project" },
+    { "number": "6+", "label": "Months real dev work" }
+  ],
+  "tagSkills": ["Laravel", "React", "MySQL", "JavaScript", "PHP", "REST APIs", "Git"],
+  "highlightSkills": ["Laravel", "React"],
+  "about": {
+    "headline": ["Real ", "development", ", not tutorials."],
+    "accentIndex": 1,
+    "paragraphs": [
+      "I am a self-driven developer building a comprehensive SaaS project management system. My focus is on architectural integrity, backend logic, and high-performance execution.",
+      "I specialize in independent problem-solving and systematic debugging. I break down complex requirements into scalable components, ensuring robust and maintainable codebases.",
+      "Fluent in English and experienced in remote collaboration. I am looking to contribute to serious engineering teams where technical excellence and value delivery are the priority."
+    ],
+    "stack": [
+      { "icon": "🧠", "name": "Backend Development", "level": "Laravel, APIs, system logic" },
+      { "icon": "⚛️", "name": "Frontend", "level": "React, UI integration" },
+      { "icon": "🗄️", "name": "Database", "level": "MySQL design & relations" },
+      { "icon": "⚙️", "name": "Problem Solving", "level": "Debugging & system thinking" },
+      { "icon": "🔧", "name": "Tools", "level": "Git, WAMP, local environments" },
+      { "icon": "🌍", "name": "Communication", "level": "Fluent English" }
+    ]
+  },
+  "projects": [
+    {
+      "emoji": "📊",
+      "gradient": "linear-gradient(135deg,#0a1a0a,#1a2a0a)",
+      "accentColor": "#c8f050",
+      "title": "SaaS Project Management (Frontend)",
+      "description": "A React-based project management interface featuring task tracking, project workflows, and role-based access control. Designed for seamless user experience in enterprise environments.",
+      "tags": ["React", "JavaScript", "UI/UX"],
+      "demo": "YOUR_DEMO_LINK",
+      "source": "https://github.com/khalil5885/Application_de_gestion_des_projets"
+    },
+    {
+      "emoji": "⚙️",
+      "gradient": "linear-gradient(135deg,#0a0a1a,#1a0a2a)",
+      "accentColor": "#8bfcd8",
+      "title": "Project Manager Backend",
+      "description": "The Laravel backend powering the SaaS project management system. Implements RESTful APIs, complex database relationships, and secure authentication logic.",
+      "tags": ["Laravel", "PHP", "MySQL", "API"],
+      "demo": "#",
+      "source": "https://github.com/khalil5885/projects_manager_backend"
+    },
+    {
+      "emoji": "🏥",
+      "gradient": "linear-gradient(135deg,#1a0a0a,#2a1a0a)",
+      "accentColor": "#f0c050",
+      "title": "AD-MEDTECH",
+      "description": "A medical technology landing page focused on performance and responsive design. Built using advanced CSS techniques to ensure high visual impact across all devices.",
+      "tags": ["CSS", "HTML", "Responsive"],
+      "demo": "#",
+      "source": "https://github.com/khalil5885/AD-MEDTECH"
+    }
+  ],
+  "contact": {
+    "headline": ["Let’s build something ", "serious."],
+    "accentIndex": 1,
+    "description": "Currently open to remote opportunities with international teams. If you need a developer who builds real systems and communicates clearly, let's connect.",
+    "formspreeId": "YOUR_FORMSPREE_ID"
+  },
+  "socials": [
+    { "name": "GitHub", "url": "https://github.com/khalil5885", "icon": "GH" },
+    { "name": "LinkedIn", "url": "YOUR_LINKEDIN", "icon": "LI" }
+  ]
+}
+</script>
+
+<style>
+/* ─── Reset & Base ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#0d0d0d;
+  color:#f0ede6;
+  font-family:'Syne',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:'Syne',sans-serif}
+img{display:block;max-width:100%}
+
+/* ─── Design Tokens ─── */
+:root{
+  --bg:#0d0d0d;
+  --surface:#141414;
+  --surface2:#1c1c1c;
+  --border:#252525;
+  --accent:#c8f050;
+  --accent2:#8bfcd8;
+  --text:#f0ede6;
+  --muted:#6e6e66;
+  --font-display:'DM Serif Display',serif;
+  --font-body:'Syne',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ─── Noise texture overlay ─── */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.025;
+  pointer-events:none;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0d0d0d}
+::-webkit-scrollbar-thumb{background:#252525;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ─── Shared layout ─── */
+.wrap{max-width:1100px;margin:0 auto;padding:0 3rem}
+
+/* ─── Reveal animation ─── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ─── Section label ─── */
+.section-label{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--font-mono);font-size:.72rem;
+  color:var(--accent);letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:.9rem;
+}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+
+/* ─── Section title ─── */
+.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,3.5vw,3.2rem);
+  line-height:1.08;margin-bottom:1rem;
+}
+.section-title em{color:var(--accent);font-style:italic}
+
+/* ─── Buttons ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.72rem 1.6rem;border-radius:99px;
+  font-size:.82rem;font-weight:600;letter-spacing:.06em;
+  border:none;transition:all .25s var(--ease);
+}
+.btn-solid{background:var(--accent);color:#0d0d0d}
+.btn-solid:hover{opacity:.85;transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;width:100%;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 3rem;
+  border-bottom:1px solid transparent;
+  transition:background .4s,border-color .4s,backdrop-filter .4s;
+}
+#nav.stuck{
+  background:rgba(13,13,13,.88);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-color:var(--border);
+}
+.nav-logo{
+  font-family:var(--font-display);font-size:1.4rem;
+  letter-spacing:.01em;color:var(--text);
+}
+.nav-logo b{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);transition:color .2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--border);padding:.45rem 1.1rem;border-radius:99px;
+  color:var(--muted);transition:border-color .2s,color .2s;
+}
+.nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+#hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-glow{
+  position:absolute;top:0;right:-10%;width:70vw;height:100vh;
+  background:radial-gradient(ellipse at 70% 40%,rgba(200,240,80,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at 60% 50%,black 20%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:1100px;margin:0 auto;
+  width:100%;padding:8rem 3rem 5rem;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(200,240,80,.06);border:1px solid rgba(200,240,80,.2);
+  border-radius:99px;padding:.32rem .9rem;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.6rem;
+}
+.hero-badge-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(200,240,80,.4)}50%{opacity:.4;box-shadow:0 0 0 4px rgba(200,240,80,0)}}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(3rem,5.5vw,5.2rem);
+  line-height:1.02;letter-spacing:-.025em;
+  margin-bottom:1.4rem;
+}
+.hero-title em{color:var(--accent);font-style:italic}
+.hero-desc{
+  color:var(--muted);font-size:1rem;
+  max-width:430px;line-height:1.85;
+  margin-bottom:2.2rem;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* Profile card */
+.hero-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:1.5rem;padding:2rem;position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:-40%;right:-30%;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,240,80,.07),transparent 70%);
+}
+.hero-avatar{
+  width:68px;height:68px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:1.75rem;color:#0d0d0d;
+  margin-bottom:1rem;
+  box-shadow:0 0 0 4px rgba(200,240,80,.12);
+}
+.hero-card-name{font-family:var(--font-display);font-size:1.25rem;margin-bottom:.2rem}
+.hero-card-role{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.skill-pill{
+  background:var(--surface2);border:1px solid var(--border);
+  padding:.22rem .65rem;border-radius:99px;
+  font-size:.72rem;color:var(--muted);font-family:var(--font-mono);
+  transition:border-color .2s,color .2s;
+}
+.skill-pill:hover{border-color:var(--border)}
+.skill-pill.hl{
+  border-color:rgba(200,240,80,.35);color:var(--accent);
+  background:rgba(200,240,80,.06);
+}
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);
+}
+.stat-num{font-family:var(--font-display);font-size:1.7rem;color:var(--text)}
+.stat-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* ═══════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════ */
+#about{padding:6rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem}
+.about-bio p{color:var(--muted);line-height:1.9;font-size:1rem}
+.about-bio p+p{margin-top:1rem}
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stack-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:1rem;padding:1.1rem 1.2rem;
+  transition:border-color .25s,transform .25s;
+}
+.stack-item:hover{border-color:rgba(200,240,80,.3);transform:translateY(-2px)}
+.stack-icon{font-size:1.1rem;margin-bottom:.5rem}
+.stack-name{font-family:var(--font-mono);font-size:.82rem;color:var(--text);margin-bottom:.15rem}
+.stack-level{font-size:.7rem;color:var(--muted)}
+
+/* ═══════════════════════════════════════════════
+   PROJECTS
+═══════════════════════════════════════════════ */
+#projects{padding:6rem 0}
+.projects-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:1.5rem;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+  display:flex;flex-direction:column;
+}
+.project-card:hover{border-color:var(--accent);transform:translateY(-5px)}
+.project-thumb{
+  height:190px;display:flex;align-items:center;justify-content:center;
+  font-size:3.8rem;position:relative;overflow:hidden;
+  transition:transform .4s var(--ease);
+}
+.project-card:hover .project-thumb{transform:scale(1.04)}
+.project-thumb-inner{position:relative;z-index:1}
+.project-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(13,13,13,.5));
+}
+.project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+.project-tag{
+  background:var(--surface2);border:1px solid var(--border);
+  padding:.2rem .6rem;border-radius:99px;
+  font-size:.68rem;color:var(--muted);font-family:var(--font-mono);
+}
+.project-title{font-family:var(--font-display);font-size:1.2rem;margin-bottom:.5rem}
+.project-desc{font-size:.88rem;color:var(--muted);line-height:1.75;flex:1;margin-bottom:1.3rem}
+.project-links{display:flex;gap:.75rem}
+.project-link{
+  font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--border);padding:.35rem .9rem;border-radius:99px;
+  color:var(--muted);transition:border-color .2s,color .2s;
+}
+.project-link:hover{border-color:var(--accent);color:var(--accent)}
+.project-link.primary{border-color:var(--accent);color:var(--accent)}
+.project-link.primary:hover{background:rgba(200,240,80,.08)}
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+#contact{padding:6rem 0}
+.contact-inner{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2rem;padding:4rem;margin-top:3rem;
+  display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;
+  position:relative;overflow:hidden;
+}
+.contact-inner::before{
+  content:'';position:absolute;bottom:-60%;left:-20%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,252,216,.04),transparent 70%);
+  pointer-events:none;
+}
+.contact-desc{color:var(--muted);font-size:.95rem;line-height:1.85;margin-top:.6rem;margin-bottom:2rem}
+.contact-socials{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.contact-socials li a{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.82rem;color:var(--muted);
+  transition:color .2s;
+}
+.contact-socials li a:hover{color:var(--accent)}
+.social-arrow{font-family:var(--font-mono);color:var(--accent);font-size:.78rem}
+
+/* Form */
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.form-group input,
+.form-group textarea{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:.65rem;padding:.72rem 1rem;
+  color:var(--text);font-family:'Syne',sans-serif;font-size:.88rem;
+  outline:none;resize:none;
+  transition:border-color .2s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--muted)}
+.form-group input:focus,
+.form-group textarea:focus{border-color:rgba(200,240,80,.5)}
+.form-group textarea{height:110px}
+.form-submit{
+  background:var(--accent);color:#0d0d0d;
+  padding:.8rem 2rem;border-radius:99px;border:none;
+  font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;
+  letter-spacing:.06em;cursor:pointer;align-self:flex-start;
+  transition:opacity .2s,transform .2s;
+}
+.form-submit:hover{opacity:.85;transform:translateY(-1px)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.form-msg{font-family:var(--font-mono);font-size:.78rem;margin-top:.2rem}
+.form-msg.ok{color:var(--accent)}
+.form-msg.err{color:#f05050}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1100px;margin:0 auto;
+}
+.footer-copy{font-size:.78rem;color:var(--muted)}
+.footer-socials{display:flex;gap:1.5rem;list-style:none}
+.footer-socials a{font-size:.78rem;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;transition:color .2s}
+.footer-socials a:hover{color:var(--accent)}
+
+/* ═══════════════════════════════════════════════
+   CURSOR GLOW
+═══════════════════════════════════════════════ */
+#cursor-glow{
+  position:fixed;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,240,80,.05),transparent 65%);
+  pointer-events:none;z-index:0;
+  transform:translate(-50%,-50%);
+  transition:transform .08s linear;
+  mix-blend-mode:screen;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:7rem 1.5rem 4rem}
+  .hero-card{display:none}
+  #nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .wrap{padding:0 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .contact-inner{grid-template-columns:1fr;padding:2rem;gap:2rem}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor glow (desktop only) -->
+<div id="cursor-glow"></div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo" id="nav-logo">…</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire me</a>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge reveal" id="hero-badge" style="display:none">
+        <span class="hero-badge-dot"></span>
+        <span id="badge-text"></span>
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1" id="hero-title"></h1>
+      <p class="hero-desc reveal reveal-delay-2" id="hero-desc"></p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#projects" class="btn btn-solid">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right reveal reveal-delay-2">
+      <div class="hero-card">
+        <div class="hero-avatar" id="hero-avatar"></div>
+        <div class="hero-card-name" id="hero-card-name"></div>
+        <div class="hero-card-role" id="hero-card-role"></div>
+        <div class="skill-pills" id="skill-pills"></div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ABOUT ═══════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="section-label">About me</span>
+      <h2 class="section-title" id="about-title"></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio reveal reveal-delay-1" id="about-bio"></div>
+      <div class="stack-grid reveal reveal-delay-2" id="stack-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROJECTS ═══════ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="section-label">Work</span>
+      <h2 class="section-title">Selected <em>projects</em></h2>
+    </div>
+    <div class="projects-grid reveal reveal-delay-1" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title" id="contact-title"></h2>
+    </div>
+    <div class="contact-inner reveal reveal-delay-1">
+      <div>
+        <p class="contact-desc" id="contact-desc"></p>
+        <ul class="contact-socials" id="contact-socials"></ul>
+      </div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" placeholder="John Doe" required/>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" placeholder="john@example.com" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-subject">Subject</label>
+          <input id="f-subject" name="subject" type="text" placeholder="Project collaboration..."/>
+        </div>
+        <div class="form-group">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="form-submit">Send Message →</button>
+        <p class="form-msg" id="form-msg" style="display:none"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <p class="footer-copy" id="footer-copy"></p>
+  <ul class="footer-socials" id="footer-socials"></ul>
+</footer>
+
+<!-- ═══════ SCRIPT ═══════ -->
+<script>
+(function(){
+  /* ── Load data ── */
+  const D = JSON.parse(document.getElementById('portfolio-data').textContent);
+
+  /* ── Helpers ── */
+  const el = id => document.getElementById(id);
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  /* ── NAV logo ── */
+  el('nav-logo').innerHTML = esc(D.name).toLowerCase().replace(' ','<b>.</b>');
+
+  /* ── Hero badge ── */
+  if(D.available){
+    el('hero-badge').style.display='inline-flex';
+    el('badge-text').textContent = D.availableText;
+  }
+
+  /* ── Hero title ── */
+  const titleLines = D.tagline.map((line,i)=>{
+    const content = esc(line);
+    return i===D.taglineAccent ? `<em>${content}</em>` : content;
+  });
+  el('hero-title').innerHTML = titleLines.join('<br>');
+
+  /* ── Hero desc ── */
+  el('hero-desc').textContent = D.description;
+
+  /* ── Avatar & card ── */
+  el('hero-avatar').textContent = D.initials;
+  el('hero-card-name').textContent = D.name;
+  el('hero-card-role').textContent = D.role;
+
+  /* ── Skill pills ── */
+  el('skill-pills').innerHTML = D.tagSkills.map(s=>{
+    const hl = D.highlightSkills.includes(s);
+    return `<span class="skill-pill${hl?' hl':''}">${esc(s)}</span>`;
+  }).join('');
+
+  /* ── Stats ── */
+  el('hero-stats').innerHTML = D.stats.map(s=>
+    `<div><div class="stat-num">${esc(s.number)}</div><div class="stat-lbl">${esc(s.label)}</div></div>`
+  ).join('');
+
+  /* ── About title ── */
+  el('about-title').innerHTML = D.about.headline.map((part,i)=>
+    i===D.about.accentIndex ? `<em>${esc(part)}</em>` : esc(part)
+  ).join('');
+
+  /* ── About bio ── */
+  el('about-bio').innerHTML = D.about.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('');
+
+  /* ── Stack ── */
+  el('stack-grid').innerHTML = D.about.stack.map(s=>
+    `<div class="stack-item">
+      <div class="stack-icon">${s.icon}</div>
+      <div class="stack-name">${esc(s.name)}</div>
+      <div class="stack-level">${esc(s.level)}</div>
+    </div>`
+  ).join('');
+
+  /* ── Projects ── */
+  el('projects-grid').innerHTML = D.projects.map(p=>
+    `<article class="project-card">
+      <div class="project-thumb" style="background:${p.gradient}">
+        <div class="project-thumb-inner">${p.emoji}</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${esc(t)}</span>`).join('')}</div>
+        <h3 class="project-title">${esc(p.title)}</h3>
+        <p class="project-desc">${esc(p.description)}</p>
+        <div class="project-links">
+          <a href="${p.demo}" class="project-link primary" target="_blank" rel="noopener">Live Demo ↗</a>
+          <a href="${p.source}" class="project-link" target="_blank" rel="noopener">Source Code</a>
+        </div>
+      </div>
+    </article>`
+  ).join('');
+
+  /* ── Contact title ── */
+  el('contact-title').innerHTML = D.contact.headline.map((part,i)=>
+    i===D.contact.accentIndex ? `<em>${esc(part)}</em>` : esc(part)
+  ).join('');
+  el('contact-desc').textContent = D.contact.description;
+
+  /* ── Contact socials ── */
+  el('contact-socials').innerHTML = D.socials.map(s=>
+    `<li><a href="${s.url}" target="_blank" rel="noopener">
+      <span class="social-arrow">&gt;</span>${esc(s.name)}
+    </a></li>`
+  ).join('');
+
+  /* ── Footer ── */
+  el('footer-copy').textContent = `© ${new Date().getFullYear()} ${D.name}. Built with passion.`;
+  el('footer-socials').innerHTML = D.socials.map(s=>
+    `<li><a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a></li>`
+  ).join('');
+
+  /* ── Nav scroll ── */
+  const nav = el('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60),{passive:true});
+
+  /* ── Cursor glow ── */
+  const glow = el('cursor-glow');
+  window.addEventListener('mousemove',e=>{
+    glow.style.left=e.clientX+'px';
+    glow.style.top=e.clientY+'px';
+  },{passive:true});
+
+  /* ── Scroll reveal ── */
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* ── Contact form ── */
+  el('contact-form').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=el('form-submit');
+    const msg=el('form-msg');
+    btn.disabled=true;
+    btn.textContent='Sending…';
+    msg.style.display='none';
+
+    const formData = new FormData(this);
+    const id = D.contact.formspreeId;
+
+    if(id && id!=='YOUR_FORMSPREE_ID'){
+      try{
+        const res = await fetch(`https://formspree.io/f/${id}`,{
+          method:'POST',
+          body:formData,
+          headers:{Accept:'application/json'}
+        });
+        if(res.ok){
+          msg.className='form-msg ok';
+          msg.textContent='✓ Message sent! I\'ll get back to you soon.';
+          this.reset();
+        } else {
+          throw new Error();
+        }
+      }catch{
+        msg.className='form-msg err';
+        msg.textContent='Something went wrong. Try emailing me directly.';
+      }
+    } else {
+      /* Demo mode — no Formspree ID set */
+      await new Promise(r=>setTimeout(r,900));
+      msg.className='form-msg ok';
+      msg.textContent='✓ Demo mode: Set your Formspree ID in the JSON to enable real sending.';
+    }
+
+    msg.style.display='block';
+    btn.disabled=false;
+    btn.textContent='Send Message →';
+  });
+
+})();
+</script>
+</body>
+</html>
