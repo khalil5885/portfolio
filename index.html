@@ -518,7 +518,29 @@ footer{
 ═══════════════════════════════════════════════ */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;padding:7rem 1.5rem 4rem}
-  .hero-card{display:none}
+  /* REMOVED: .hero-card{display:none}  <-- This was hiding your card! */
+  
+  /* Mobile card adjustments */
+  .hero-card{
+    min-height:auto;
+    padding:1.5rem;
+    width:100%;
+    max-width:400px;
+    margin:0 auto;
+  }
+  .hero-avatar{
+    width:140px;
+    height:140px;
+  }
+  
+  /* Expanded state on mobile */
+  .hero-card.expanded .hero-avatar{
+    height:320px;        /* Slightly shorter for small screens */
+  }
+  .hero-card.expanded .hero-card-info{
+    padding:1.2rem 1.5rem 1.5rem;
+  }
+  
   #nav{padding:1rem 1.5rem}
   .nav-links{display:none}
   .wrap{padding:0 1.5rem}
