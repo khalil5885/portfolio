@@ -278,21 +278,53 @@ body::before{
   background:radial-gradient(circle,rgba(200,240,80,.07),transparent 70%);
 }
 .hero-avatar{
-  width:130px;height:130px;border-radius:50%;
+  width:200px;height:200px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.5rem;
-  box-shadow:0 0 20px rgba(200,240,80,0.15);
+  box-shadow:0 0 30px rgba(200,240,80,0.15), 0 10px 40px rgba(0,0,0,0.4);
   transition:transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
   overflow:hidden;
-  border:2px solid rgba(200,240,80,0.2);
+  border:3px solid rgba(200,240,80,0.25);
+  cursor:pointer;
 }
 .hero-avatar:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 30px rgba(200,240,80,0.3);
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(200,240,80,0.3), 0 15px 50px rgba(0,0,0,0.5);
 }
 .hero-avatar img{
   width:100%;height:100%;
   object-fit:cover;
+}
+
+/* ─── Image Modal ─── */
+#img-modal{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  padding:2rem;opacity:0;transition:opacity 0.3s var(--ease);
+}
+#img-modal.active{display:flex;opacity:1}
+.modal-content{
+  position:relative;max-width:600px;width:100%;
+  transform:scale(0.9);transition:transform 0.3s var(--ease);
+}
+#img-modal.active .modal-content{transform:scale(1)}
+.modal-img{
+  width:100%;height:auto;border-radius:1rem;
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
+  border:1px solid var(--border);
+}
+.modal-close{
+  position:absolute;top:-3rem;right:0;
+  background:none;border:none;color:var(--text);
+  font-size:2.5rem;cursor:pointer;opacity:0.7;
+  transition:opacity 0.2s;
+}
+.modal-close:hover{opacity:1}
+
+@media(max-width:900px){
+  .hero-avatar{width:160px;height:160px}
 }
 .hero-card-name{font-family:var(--font-display);font-size:1.25rem;margin-bottom:.2rem}
 .hero-card-role{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
@@ -481,6 +513,14 @@ footer{
 
 <!-- Cursor glow (desktop only) -->
 <div id="cursor-glow"></div>
+
+<!-- Image Modal -->
+<div id="img-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <img src="my_pro_picture.png" alt="Profile Full" class="modal-img">
+  </div>
+</div>
 
 <!-- ═══════ NAV ═══════ -->
 <nav id="nav">
@@ -747,6 +787,31 @@ footer{
     msg.style.display='block';
     btn.disabled=false;
     btn.textContent='Send Message →';
+  });
+
+  /* ── Image Modal Logic ── */
+  const modal = el('img-modal');
+  const avatar = el('hero-avatar');
+  const closeBtn = el('modal-close');
+
+  const openModal = () => {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scroll
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  avatar.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
   });
 
 })();
